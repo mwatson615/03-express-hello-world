@@ -3,9 +3,13 @@
 const express = require('express');
 const app = express();
 
+const moment = require('moment');
+let currentDate = moment();
+
 const requestTime = (req, res, next) => {
-	req.requestedTime = Date.now();
-	let newDate = req.requestedTime.toISOString();
+	let now = new Date();
+	// req.requestedTime = moment(Date.now());
+	req.requestedTime = now.toISOString();
 	next();
 }
 
@@ -17,7 +21,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/time', (req, res, next) => {
-	res.send(`Run at ${newDate}`);
+	res.send(`Run at ${req.requestedTime}`);
 })
 
 
