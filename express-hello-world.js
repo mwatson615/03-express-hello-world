@@ -3,6 +3,7 @@
 const express = require('express');
 const app = express();
 
+
 const moment = require('moment');
 let currentDate = moment();
 
@@ -24,8 +25,8 @@ app.get('/time', (req, res, next) => {
 	res.send(`Run at ${req.requestedTime}`);
 })
 
+let port = process.env.PORT || 8080;
 
-
-app.listen(8080, () => {
-	console.log('server listening on port 8080')
-})
+app.listen(port, () => {
+	console.log('server listening on port ' + port)
+});
